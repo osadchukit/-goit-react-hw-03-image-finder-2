@@ -15,15 +15,6 @@ class App extends Component {
     this.setState({ textSearch });
   };
 
-  // componentDidUpdate = e => {
-  //   e.preventDefault();
-  //   getImage(this.props.value.trim)
-  //     .then(response => response.json())
-  //     .then(image => this.setState({ image }));
-  //   .catch()
-  //   .finally();
-  // };
-
   render() {
     return (
       <Conteiner>
@@ -35,5 +26,3 @@ class App extends Component {
 }
 
 export default App;
-
-// fetch(`${BASE_URL}?key=${API_KEY}&q=${searchText}&image_type=photo`);
