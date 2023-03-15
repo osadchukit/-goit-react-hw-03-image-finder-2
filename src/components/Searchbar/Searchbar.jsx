@@ -1,7 +1,5 @@
-// import { toast } from 'react-toastify';
-
 import { Component } from 'react';
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 import { Button, Form, Input, Header, Span } from './Searchbar.styled';
 
 class Searchbar extends Component {
@@ -23,16 +21,7 @@ class Searchbar extends Component {
     //   return toast.error('Error!');
     // }
     if (this.state.value.trim() === '') {
-      toast.error('Поле не може бути пустим!', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      return toast.error('Поле не може бути пустим!');
     }
     this.props.onSearch(this.state.value);
     this.setState({ value: '' });

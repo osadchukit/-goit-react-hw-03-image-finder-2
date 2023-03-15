@@ -11,28 +11,25 @@ class ImageGallery extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    // this.setState({ loading: true });
+    this.setState({ loading: true });
 
     if (prevProps.value !== this.props.value) {
       getImage(this.props.value.trim())
-        .then(response => {
-          return response.json();
-        })
-        .then(image => {
-          this.setState({ image });
-        })
-        .finally(() => {
-          this.setState({ loading: false });
-        });
+        .then(response => response.json())
+        .then(image => this.setState({ image }))
+        .finally(() => this.setState({ loading: false }));
     }
   }
 
   render() {
+    const { image, loading } = this.state;
+    const { value } = this.props;
     return (
       <>
-        {/* {this.state.loading && <h1>Loading...</h1>} */}
-        {this.state.image &&
-          this.state.image.hits.map(img => {
+        {loading && <h1>Loading...</h1>}
+        {!value && <p>Введіть назву</p>}
+        {image &&
+          image.hits.map(img => {
             return (
               <ImageGalleryItem
                 key={img.id}
