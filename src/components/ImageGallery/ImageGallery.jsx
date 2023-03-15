@@ -1,31 +1,49 @@
 import { Component } from 'react';
 import { getImage } from 'components/Fetch/Fetch';
+import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
+
 // import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
-// import { Gallery } from './ImageGallery.styled';
 
 class ImageGallery extends Component {
   state = {
     image: null,
+    loading: false,
   };
 
   componentDidUpdate(prevProps) {
+    // this.setState({ loading: true });
+
     if (prevProps.value !== this.props.value) {
-      getImage(this.props.value.trim)
+      getImage(this.props.value.trim())
         .then(response => {
-          // console.log('response.json() :>> ', response.json());
-          response.json();
+          return response.json();
         })
         .then(image => {
-          console.log('image :>> ', image);
-          // this.setState({ image });
+          this.setState({ image });
+        })
+        .finally(() => {
+          this.setState({ loading: false });
         });
     }
   }
 
   render() {
-    return console.log('this.state.image :>> ', this.state.image);
+    return (
+      <>
+        {/* {this.state.loading && <h1>Loading...</h1>} */}
+        {this.state.image &&
+          this.state.image.hits.map(img => {
+            return (
+              <ImageGalleryItem
+                key={img.id}
+                image={img.webformatURL}
+                tags={img.tags}
+              />
+            );
+          })}
+      </>
+    );
   }
-  // return this.setState.hits.length > 0 && 'go';
 }
 
 export default ImageGallery;

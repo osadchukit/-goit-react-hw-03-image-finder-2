@@ -1,9 +1,8 @@
 import { Component } from 'react';
-
-// import { getImage } from 'components/Fetch/Fetch';
+import { ToastContainer } from 'react-toastify';
 import Searchbar from 'components/Searchbar/Searchbar';
-import { Conteiner } from './App.styled';
 import ImageGallery from 'components/ImageGallery/ImageGallery';
+import { Conteiner, Gallery } from './App.styled';
 
 class App extends Component {
   state = {
@@ -11,15 +10,16 @@ class App extends Component {
     textSearch: '',
   };
 
-  handleSubmitApp = textSearch => {
-    this.setState({ textSearch });
-  };
+  handleSubmitApp = textSearch => this.setState({ textSearch });
 
   render() {
     return (
       <Conteiner>
         <Searchbar onSearch={this.handleSubmitApp} />
-        <ImageGallery value={this.state.textSearch} />
+        <Gallery>
+          <ImageGallery value={this.state.textSearch} />
+        </Gallery>
+        <ToastContainer />
       </Conteiner>
     );
   }
