@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import { getImage } from 'components/Fetch/Fetch';
+// import { getImage } from 'components/Fetch/Fetch';
 import Searchbar from 'components/Searchbar/Searchbar';
 import { Conteiner } from './App.styled';
 import ImageGallery from 'components/ImageGallery/ImageGallery';
